@@ -156,13 +156,12 @@ function processFilters() {
 									case 'classes.php':
 										$subclass = 'Root_class';
 										break;
-									case 'class-load.php':
+									case 'load_objectClasses.php':
 									case 'class-gallery.php':
 										$subclass = 'Miscellaneous';
 										break;
 									case 'class-album.php':
 									case 'class-image.php':
-									case 'class-transientimage.php':
 									case 'class-textobject.php':
 									case 'class-textobject_core.php':
 									case 'class-Anyfile.php';
