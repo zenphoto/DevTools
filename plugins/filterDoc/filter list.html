@@ -442,6 +442,14 @@
 	<!-- classhead Miscellaneous --><p></p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>colorbox_themepath</strong></span>(<em>string</em>)</p>
+					<!-- description(Miscellaneous.Miscellaneous)-colorbox_themepath --><p>allows overriding the path of the "custom" colorbox theme. getPlugin() will be called with this path to get the reference to the css when the selected colorbox theme is set to "custom".</p><!--e-->
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list"><em>plugin</em>/colorbox_js.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>comment_form_data</strong></span>(<em>string, string</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-comment_form_data --><p>Allows a plugin to provide data for the comment form.</p><!--e-->
 					<p class="calls">Invoked from:</p>
@@ -533,6 +541,24 @@
 						<li class="call_list">admin-edit.php</li>
 						<li class="call_list">admin-options.php</li>
 						<li>...</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>themeSwitcher_Controllink</strong></span>(<em>string</em>)</p>
+					<!-- description(Miscellaneous.Miscellaneous)-themeSwitcher_Controllink --><p>Invoked by themeSwitcher's theme_body_open filter. Allows themes to add to the selectors for theme related choices such as personality or color scheme.</p><!--e-->
+					<p class="handlers">For example see <em>theme</em>/default/functions.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list"><em>plugin</em>/themeSwitcher.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>themeSwitcher_head</strong></span>(<em>_themeSwitcherThemelist</em>)</p>
+					<!-- description(Miscellaneous.Miscellaneous)-themeSwitcher_head --><p>Invoded by themeSwitcher's theme_head filter. Allows themes to add to the HTML placed in the theme head when themeSwitcher is active. The parameter passed is a array of theme=>enabled values. If enabled is false the theme will not be included in the selector. Filters can change this value to control if specific themes may be chosen.</p><!--e-->
+					<p class="handlers">For example see <em>theme</em>/default/functions.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list"><em>plugin</em>/themeSwitcher.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
@@ -994,7 +1020,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>authorization_cookie</strong></span>(<em>loggedin</em>)</p>
 					<!-- description(User_management.Miscellaneous)-authorization_cookie --><p>Allows a plugin to override cookie based authorization credentials.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/show_not_logged-in.php</p>
+					<p class="handlers">For example see <em>plugin</em>/http_auth.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">lib-auth.php</li>
