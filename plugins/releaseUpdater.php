@@ -17,7 +17,9 @@
  *
  *
  * <b>NOTE:</b> You <b>MUST</b> change the <var>VERSION_FILE</var> define to point to your
- * clone of the Zenphoto repository.
+ * clone of the Zenphoto repository. You must also change the <var>TIMEOFFSET</var> define to
+ * adjust your local time to GMT. My server returns local time for the <var>time()</var> function
+ * so the define is set to add 8 hours to get GMT from Pacific time.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
@@ -25,6 +27,7 @@
  */
 
 define ('VERSION_FILE','d:\github\zenphoto\zp-core\version.php');
+define ('TIMEOFFSET', 8);
 
 $plugin_is_filter = 2|CLASS_PLUGIN;
 $plugin_description = gettext('Updates the Zenphoto "release" number.');
@@ -33,7 +36,7 @@ $plugin_version = '1.4.4';
 
 if (file_exists(VERSION_FILE)) {
 
-	list($y,$m,$d) = explode('-',date('Y-m-d'));
+	list($y,$m,$d) = explode('-',date('Y-m-d',time()+TIMEOFFSET*3600));
 
 	if ($m > 2) {
 	    $m = $m - 3;
