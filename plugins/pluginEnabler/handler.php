@@ -39,7 +39,7 @@ if (isset($_GET['pluginsEnable'])) {
 			$opt = 'zp_plugin_'.$extension;
 			switch ($setting) {
 				case 1:
-					if (strpos($paths[$extension],ZENFOLDER) !== false) {
+					if (strpos($paths[$extension],ZENFOLDER) !== false && $extension != 'show_not_logged-in') {
 						$enable = true;
 						break;
 					}
