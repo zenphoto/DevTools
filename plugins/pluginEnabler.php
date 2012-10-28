@@ -29,7 +29,7 @@ class pluginEnabler {
 									'formname'=>'enablebutton',
 									'action'=>WEBPATH.'/plugins/pluginEnabler/handler.php',
 									'icon'=>'images/zp.png',
-									'title'=>gettext('Enables all Zenphoto plugins. Third party plugins are disabled.'),
+									'title'=>gettext('Enables all Zenphoto plugins (except <em>show_not_logged-in</em>!) Third party plugins are disabled.'),
 									'alt'=>'',
 									'hidden'=> '<input type="hidden" name="pluginsEnable" value="1" />',
 									'rights'=> ADMIN_RIGHTS,

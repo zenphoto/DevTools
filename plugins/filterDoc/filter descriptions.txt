@@ -1,13 +1,13 @@
-*Object.Search:=
-object_addComment:=
 *Upload:=
 *Admin.Zenpage:=
 *Miscellaneous:=
 *Admin.Comment:=
-*Admin.Media:=
+object_addComment:=
+*Admin.Miscellaneous:=
 *Object.Root_class:=
 *Miscellaneous.Miscellaneous:=
-*Admin.Miscellaneous:=
+*Object.Search:=
+*Admin.Media:=
 image_filter:=Allow a plugin to remove files from the list of images found in an album so that they are not treated as images.
 bulk_album_actions:=Allows a filter to establish bulk album action items
 bulk_image_actions:=Allows a filter to establish bulk image action items
@@ -79,6 +79,8 @@ admin_headers:=Allows plugins to place HTML into the header region of admin page
 album_filter:=Allows plugins to remove some folders from the list of album folders that Zenphoto discovers.
 installation_information:=Allows plugins to show items in the "Installation Information" section of the overview page.
 security_misc:=Allows plugins to supply miscellaneous information to the security logger
+can_set_user_password:=Called from the "apply" processing of an Zenphoto user. Return "false" to prevent the password from being saved.
+remove_user:=Called in Zenphoto_Administrator remove method to allow plugins to clean up anything associated with the user.
 check_credentials:=Called when an object is requested to verify that the logged on user is allowed to perform the <em>action</em> on the item.
 themeSwitcher_head:=Invoded by themeSwitcher's theme_head filter. Allows themes to add to the HTML placed in the theme head when themeSwitcher is active. The parameter passed is a array of theme=>enabled values. If enabled is false the theme will not be included in the selector. Filters can change this value to control if specific themes may be chosen.
 theme_body_open:=Invoked by all themes just after the &lt;body&gt; HTML tag.
