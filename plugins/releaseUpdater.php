@@ -26,17 +26,28 @@
  * @subpackage admin
  */
 
-define ('VERSION_FILE','d:\github\zenphoto\zp-core\version.php');
-define ('TIMEOFFSET', 8);
-
 $plugin_is_filter = 2|CLASS_PLUGIN;
 $plugin_description = gettext('Updates the Zenphoto "release" number.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.4';
+$option_interface = 'releaseUpdater';
 
-if (file_exists(VERSION_FILE)) {
+class releaseUpdater {
 
-	list($y,$m,$d) = explode('-',date('Y-m-d',time()+TIMEOFFSET*3600));
+	function __construct() {
+		setOptionDefault('releaseUpdater_loc', SERVERPATH.'/'.ZENFOLDER.'/version.php');
+	}
+
+	function getOptionsSupported() {
+		return array(	gettext('File location') => array('key' => 'releaseUpdater_loc', 'type' => OPTION_TYPE_TEXTBOX,
+												'desc' => gettext('Path to the version file to be updated.')));
+	}
+}
+
+$file = getOption('releaseUpdater_loc');
+if (file_exists($file)) {
+
+	list($y,$m,$d) = explode('-',gmdate('Y-m-d'));
 
 	if ($m > 2) {
 	    $m = $m - 3;
@@ -50,12 +61,12 @@ if (file_exists(VERSION_FILE)) {
 	$j = $j - 2456220 + 10980;	//October 19, 2012 is the base date, 10980 is the base release #
 
 
-	$f = file_get_contents(VERSION_FILE);
+	$f = file_get_contents($file);
 
 	preg_match('/define\(\'ZENPHOTO_RELEASE\',\s*([0-9]*)\);/', $f, $matches);
 	if ($matches[1] != $j) {
 		$f = str_replace($matches[0], 'define(\'ZENPHOTO_RELEASE\', '.$j.');', $f);
-		file_put_contents(VERSION_FILE, $f);
+		file_put_contents($file, $f);
 	}
 
 } else {
