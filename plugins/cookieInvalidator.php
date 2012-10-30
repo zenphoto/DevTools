@@ -10,7 +10,8 @@
  * Note: you will have to log in again after this action. Your login cookie is cleared as well.
  *
  *
- * @package plugins
+ * @package plugin
+  * @subpackage development
  */
 $plugin_is_filter = 99|CLASS_PLUGIN;
 $plugin_description = gettext('Invalidates all cookies that were created earlier than the invalidate action.');

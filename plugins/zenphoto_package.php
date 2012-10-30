@@ -1,7 +1,9 @@
 <?php
 /* Creates the zenphoto.package file
  *
+ * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage development
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext('Generates the <em>zenphoto.package</em> file.');

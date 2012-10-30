@@ -11,6 +11,7 @@
  * </ul>
  *
  * @package plugins
+ * @subpackage development
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Mass enable/disable for plugins.");

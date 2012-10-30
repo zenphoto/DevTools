@@ -4,6 +4,8 @@
  * A utility to invoke each deprecated function so that you can preview the error message.
  *
  * @author Stephen Billard (sbillard)
+ * @package plugins
+ * @subpackage development
  */
 $plugin_description = gettext("Test the messages of deprecated functions.");
 $plugin_author = "Stephen Billard (sbillard)";

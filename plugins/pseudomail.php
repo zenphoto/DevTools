@@ -6,6 +6,7 @@
  * same <i>subject</i> will overwrite.
  *
  * @package plugins
+ * @subpackage development 
  */
 $plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext("Pseudo mailing handler for localhost testing.");

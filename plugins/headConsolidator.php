@@ -16,6 +16,7 @@
  * reasonable collection of plugins. So it may not be appropriate to use it from a performance perspective.]
  *
  * @package plugins
+ * @subpackage development
  * @author Stephen Billard (sbillard)
  *
  */
