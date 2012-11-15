@@ -6,7 +6,7 @@
  * same <i>subject</i> will overwrite.
  *
  * @package plugins
- * @subpackage development 
+ * @subpackage mail
  */
 $plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext("Pseudo mailing handler for localhost testing.");
@@ -21,7 +21,7 @@ if ($plugin_disable) {
 
 }
 
-function pseudo_sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses) {
+function pseudo_sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
 	$filename = str_replace(array('<', '>', ':', '"'. '/'. '\\', '|', '?', '*'), '_', $subject);
 	$path = SERVERPATH . '/' . DATA_FOLDER . '/'.$filename.'.txt';
 	$f = fopen($path, 'w');
@@ -32,6 +32,10 @@ function pseudo_sendmail($msg, $email_list, $subject, $message, $from_mail, $fro
 	}
 	fwrite($f, sprintf(gettext('To: %s'),substr($tolist, 1)) . "\n");
 	fwrite($f, sprintf('From: %1$s <%2$s>', $from_name, $from_mail) . "\n");
+	if ($replyTo) {
+		$names = array_keys($replyTo);
+		fwrite($f, sprintf('Reply-To: %1$s <%2$s>', array_shift($names),array_shift($replyTo)) . "\n");
+	}
 	if (count($cc_addresses) > 0) {
 		$cclist = '';
 		foreach ($cc_addresses as $cc_name=>$cc_mail) {

@@ -23,7 +23,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
- * @subpackage admin
+ * @subpackage development
  */
 
 $plugin_is_filter = 2|CLASS_PLUGIN;

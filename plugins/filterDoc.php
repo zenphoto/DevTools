@@ -2,7 +2,7 @@
 /* Generates doc file for filters
  *
  * @package plugins
-  * @subpackage development
+ * @subpackage development
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext('Generates Doc file for filters.');
