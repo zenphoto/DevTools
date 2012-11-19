@@ -46,29 +46,13 @@ class releaseUpdater {
 
 $file = getOption('releaseUpdater_loc');
 if (file_exists($file)) {
-
-	list($y,$m,$d) = explode('-',gmdate('Y-m-d'));
-
-	if ($m > 2) {
-	    $m = $m - 3;
-	} else {
-	    $m = $m + 9 ;
-	    $yy = $y - 1;
-	}
-
-	$c = $y / 100 ; $ya = $y - 100 * $c ;
-	$j = (int) floor((146097 * $c) / 4 + (1461 * $ya) / 4 + (153 * $m + 2) / 5 + $d + 1721119);
-	$j = $j - 2456220 + 10980;	//October 19, 2012 is the base date, 10980 is the base release #
-
-
+	$release = gmdate('ymd');
 	$f = file_get_contents($file);
-
 	preg_match('/define\(\'ZENPHOTO_RELEASE\',\s*([0-9]*)\);/', $f, $matches);
-	if ($matches[1] != $j) {
-		$f = str_replace($matches[0], 'define(\'ZENPHOTO_RELEASE\', '.$j.');', $f);
+	if ($matches[1] != $release) {
+		$f = str_replace($matches[0], 'define(\'ZENPHOTO_RELEASE\', '.$release.');', $f);
 		file_put_contents($file, $f);
 	}
-
 } else {
 	zp_register_filter('admin_note', 'patherror');
 	function patherror($tab) {
