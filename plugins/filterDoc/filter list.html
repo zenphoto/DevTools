@@ -243,7 +243,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_tabs</strong></span>(<em>zenphoto_tabs</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_tabs --><p>Allows plugins to add <em>Tabs</em> to the administrative pages.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/user-expiry.php</p>
+					<p class="handlers">For example see <em>plugin</em>/user_groups.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-globals.php</li>
@@ -260,7 +260,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_utilities_buttons</strong></span>(<em>buttonlist</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_utilities_buttons --><p>Allows plugins to add buttons to the admin utilities box on the <em>overview</em> page.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/check_for_update.php</p>
+					<p class="handlers">For example see <em>plugin</em>/markRelease.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin.php</li>
@@ -505,7 +505,7 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>sendmail</strong></span>(<em>string, email_list, subject, message, from_mail, from_name, cc_addresses</em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>sendmail</strong></span>(<em>string, email_list, subject, message, from_mail, from_name, cc_addresses, replyTo</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-sendmail --><p>Invoked when Zenphoto attempts to send an e-mail. The plugin is presumed to handle the mailing.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/zenphoto_sendmail.php</p>
 					<p class="calls">Invoked from:</p>
@@ -525,7 +525,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>setupTheme</strong></span>(<em>theme</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-setupTheme --><p>Allows a plugin to override the <em>theme</em> that Zenphoto will use to display WEB pages.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/themeSwitcher.php</p>
+					<p class="handlers">For example see <em>plugin</em>/mobileTheme.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">functions.php</li>
@@ -544,7 +544,7 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>themeSwitcher_Controllink</strong></span>(<em>string</em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>themeSwitcher_Controllink</strong></span>(<em>theme</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-themeSwitcher_Controllink --><p>Invoked by themeSwitcher's theme_body_open filter. Allows themes to add to the selectors for theme related choices such as personality or color scheme.</p><!--e-->
 					<p class="handlers">For example see <em>theme</em>/default/functions.php</p>
 					<p class="calls">Invoked from:</p>
