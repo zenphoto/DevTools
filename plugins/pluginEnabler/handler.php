@@ -81,7 +81,7 @@ if (isset($_GET['pluginsEnable'])) {
 					}
 				}
 				setOption($opt, $plugin_is_filter);
-				require_once(getPlugin($extension.'.php'));
+				require_once($paths[$extension]);
 			} else {
 				setOption($opt, 0);
 			}
