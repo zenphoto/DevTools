@@ -13,6 +13,6 @@ SET VERSION=%VERSION% Beta
 :TAG
 echo "Tagging %VERSION% (REL=%REL%)..."
 @ECHO ON
-git tag -a -m"Zenphoto version %VERSION%" Zenphoto-%REL%
+git tag -a -m"Zenphoto version %VERSION%" zenphoto-%REL%
 git push --tags
 :END
