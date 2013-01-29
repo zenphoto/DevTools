@@ -1,3 +1,5 @@
 <?php
-echo 'THis is a php file included by the plugin';
+function included() {
+	echo 'This is text from a php file included by the plugin';
+}
 ?>

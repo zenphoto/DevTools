@@ -87,6 +87,10 @@ if you need to set any filters do this here. Here an example to add a specific j
 yourplugin_javascript is the name of the function to attach to the filter. See the plugin tutorial for details
 on all available filters as some require special setup naturally. */
 zp_register_filter('theme_head','demoplugin_javascript');
+/*
+ * the following filter calls a function in a file that was included by the above require_once statement
+ */
+zp_register_filter('theme_body_open','included');
 
 /*
 This is defined on the $option_interface setting above */
@@ -110,7 +114,7 @@ class demoplugin_options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		/* 
+		/*
 			The option definitions are stored in a multidimensional array. There are several predefine option types.
 			Options types are the same for plugins and themes.
 		*/
@@ -305,11 +309,10 @@ class demoplugin_options {
 
 /* Here your plugin functions or extra classes can go. If your plugin is more complex a class or the incorporation into the above one can be good practice */
 
-/* We use a function here as an example for loading javascript on the theme using a filter (see above)
-THIS FILE OF COURSE DOES NOT EXIST */
+/* We use a function here as an example for loading javascript on the theme using a filter (see above) */
 	function demoplugin_javascript() {
 		?>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/'.USER_PLUGIN_FOLDER; ?>/<your plugin>/somejavascript.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH.'/'.USER_PLUGIN_FOLDER.'/'.stripSuffix(basename(__FILE__)); ?>/javascript.js"></script>
 		<?php
 	}
 	/* It is also good pratice to prefix or suffix function names according to the plugin so you easily spot them if used on a theme */
