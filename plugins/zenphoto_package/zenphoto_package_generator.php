@@ -36,7 +36,11 @@ $_zp_resident_files[] = THEMEFOLDER.'/zpmobile';
 $_zp_resident_files = array_merge($_zp_resident_files,getResidentFiles(SERVERPATH.'/'.THEMEFOLDER.'/zpmobile',$stdExclude));
 
 $_zp_resident_files[] = ZENFOLDER;
-$_zp_resident_files = array_merge($_zp_resident_files,getResidentFiles(SERVERPATH.'/'.ZENFOLDER,$stdExclude));
+$_zp_resident_files = array_merge($_zp_resident_files,getResidentFiles(SERVERPATH.'/'.ZENFOLDER,array_merge($stdExclude,array('setup','version.php'))));
+
+$_special_files[] = ZENFOLDER.'/version.php';
+$_special_files[] = ZENFOLDER.'/setup';
+$_special_files = array_merge($_special_files,getResidentFiles(SERVERPATH.'/'.ZENFOLDER.'/setup',$stdExclude));
 
 natsort($_zp_resident_files);
 $filepath = SERVERPATH.'/'.getOption('zenphoto_package_path').'/Zenphoto.package';
@@ -45,7 +49,11 @@ $fp = fopen($filepath, 'w');
 foreach ($_zp_resident_files as $component) {
 	fwrite($fp,$component."\n");
 }
-fwrite($fp,count($_zp_resident_files));
+foreach ($_special_files as $component) {
+	fwrite($fp,$component.":*\n");
+}
+
+fwrite($fp,count($_zp_resident_files)+count($_special_files));
 fclose($fp);
 clearstatcache();
 header('Location: '.FULLWEBPATH.'/'.ZENFOLDER.'/admin.php?action=external&msg=Zenphoto package created and stored in the '.getOption('zenphoto_package_path').' folder.');
