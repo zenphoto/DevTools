@@ -178,7 +178,7 @@ class ThemeOptions {
 					'key' => 'demotheme_note',
 					'type' => OPTION_TYPE_NOTE,
 					'order' => 25,
-					'desc' => gettext('<p class="notebox">Sometimes you might want to put out notes for example if someone tries to run the plugin but its server lacks support.
+					'desc' => gettext('<p class="notebox">Sometimes you might want to put out notes for example this version of the demo theme expects that the <strong>adminToolbox</strong> is inserted via the <code>theme_body_close</code> <em>filter</em>.
 																Then there is an option type for notes only</p>') // the class 'notebox' is a standard class for styling notes on the backend, there is also 'errorbox' for errors. Of cours
 				);
 			}
@@ -186,7 +186,7 @@ class ThemeOptions {
 	}
 	// If your theme for example uses specific image sizes for layout reasons you can disable the standard image size options here
   function getOptionsDisabled() {
-  	return array('custom_index_page');
+  	return array('custom_index_page','image_size');
   }
 
 	function handleOption($option, $currentValue) {
