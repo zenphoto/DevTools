@@ -14,10 +14,10 @@
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>
 		<?php printGalleryTitle(); ?>
-		<?php 
-			if (getOption('Allow_search')) { 
-				printSearchForm("","search","",gettext("Search gallery")); 
-			} 
+		<?php
+			if (getOption('Allow_search')) {
+				printSearchForm("","search","",gettext("Search gallery"));
+			}
 		?>
 		<?php printGalleryDesc(); ?>
 		<?php while (next_album()): ?>
@@ -26,11 +26,10 @@
 			<?php printAlbumDate(""); ?>
 			<?php printAlbumDesc(); ?>
 		<?php endwhile; ?>
-		<?php printPageListWithNav("&laquo; ".gettext("prev"), gettext("next")." &raquo;"); ?>
+		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 		<?php printRSSLink('Gallery','','RSS', ' | '); ?>
 		<?php printZenphotoLink(); ?>
-		<?php 
-			printAdminToolbox();
+		<?php
 			zp_apply_filter('theme_body_close');
 		?>
 	</body>

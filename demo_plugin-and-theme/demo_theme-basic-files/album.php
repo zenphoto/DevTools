@@ -14,10 +14,10 @@
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>
 		<?php printHomeLink('', ' | '); ?><a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo getGalleryTitle();?></a> | <?php printParentBreadcrumb(); ?><?php printAlbumTitle();?>
-		<?php 
-			if (getOption('Allow_search')) {  
-				printSearchForm("","search","",gettext("Search gallery")); 
-			} 
+		<?php
+			if (getOption('Allow_search')) {
+				printSearchForm("","search","",gettext("Search gallery"));
+			}
 		?>
 		<?php printAlbumDesc(true); ?>
 		<?php while (next_album()): ?>
@@ -30,12 +30,11 @@
 			<a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle();?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
 			</div>
 		<?php endwhile; ?>
-		<?php printPageListWithNav("&laquo; ".gettext("prev"), gettext("next")." &raquo;"); ?>
+		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); ?>
 		<?php printRSSLink('Gallery','','RSS', ' | '); ?>
 		<?php printZenphotoLink(); ?>
-		<?php 
-			printAdminToolbox();
+		<?php
 			zp_apply_filter('theme_body_close');
 		?>
 	</body>

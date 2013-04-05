@@ -12,14 +12,14 @@
 		<?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 	</head>
 	<body>
-		<?php 
-			zp_apply_filter('theme_body_open'); 
+		<?php
+			zp_apply_filter('theme_body_open');
 			$total = getNumImages() + getNumAlbums();
 			if (!$total) {
 				$_zp_current_search->clearSearchWords();
 			}
 		?>
-		<?php printHomeLink('', ' | '); ?><a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo ('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> | <?php echo gettext("Search");?>		
+		<?php printHomeLink('', ' | '); ?><a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo ('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> | <?php echo gettext("Search");?>
 		<?php printSearchForm("","search","",gettext("Search gallery")); ?>
 		<?php
 			if (($total = getNumImages() + getNumAlbums()) > 0) {
@@ -40,17 +40,16 @@
 			<a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle();?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
 			</div>
 		<?php endwhile; ?>
-		<?php 
+		<?php
 			if ($c == 0) {
 				echo gettext("Sorry, no image matches found. Try refining your search.");
 			}
 		?>
-		<?php printPageListWithNav("&laquo; ".gettext("prev"), gettext("next")." &raquo;"); ?>
+		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); ?>
 		<?php printRSSLink('Gallery','','RSS', ' | '); ?>
 		<?php printZenphotoLink(); ?>
-		<?php 
-			printAdminToolbox();
+		<?php
 			zp_apply_filter('theme_body_close');
 		?>
 	</body>
