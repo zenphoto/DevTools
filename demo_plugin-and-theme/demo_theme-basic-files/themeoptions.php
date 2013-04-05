@@ -8,20 +8,20 @@
  * If it is not present, no theme options are displayed.
  *
  */
-/* 
+/*
 	This is optional and here required because of the usage of the function generateListFromArray() within handleOption() below
 */
 require_once(dirname(__FILE__).'/functions.php');
 
 class ThemeOptions {
-	
+
 	/*
 		Here you set default values of your options.
 		The options here an an example of the default theme
 	*/
 	function ThemeOptions() {
 		setThemeOptionDefault('Allow_search', true);
-		setThemeOptionDefault('Theme_colors', 'light');
+		setThemeOptionDefault('demoTheme_colors', 'none');
 		setThemeOptionDefault('albums_per_page', 6);
 		setThemeOptionDefault('albums_per_row', 2);
 		setThemeOptionDefault('images_per_page', 20);
@@ -33,17 +33,17 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_crop_height', 100);
 		setThemeOptionDefault('thumb_crop', 1);
 		setThemeOptionDefault('thumb_transition', 1);
-		
-		/* 
+
+		/*
 			You can of course also set other options if your theme requires this.
 			This example enables the colorbox plugin if it is used for the theme pages noted.
 		*/
 		setOptionDefault('colorbox_default_album', 1);
 		setOptionDefault('colorbox_default_image', 1);
 		setOptionDefault('colorbox_default_search', 1);
-		
-		/*			
-			This is adds support for the cache manager so you can pre-cache your thumbs and other sized images as defined. 
+
+		/*
+			This is adds support for the cache manager so you can pre-cache your thumbs and other sized images as defined.
 			Zenphoto generally does this on the fly when needed but on very slow servers or if you have really a lot of images that also are quite big
 			it might be necessary to do this.
 		*/
@@ -59,7 +59,7 @@ class ThemeOptions {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		/* 
+		/*
 			The option definitions are stored in a multidimensional array. There are several predefine option types.
 			Options types are the same for plugins and themes.
 		*/
@@ -106,11 +106,11 @@ class ThemeOptions {
 
 			/* One checkbox only option - This example is a general theme option */
 			gettext('Allow search') => array(
-				'key' => 'Allow_search', 
-				'type' => OPTION_TYPE_CHECKBOX, 
+				'key' => 'Allow_search',
+				'type' => OPTION_TYPE_CHECKBOX,
 				'order' => 2,
 				'desc' => gettext('Check to enable search form.')),
-				
+
 			/* Input text field option */
 			gettext('Input text field option') => array(
 				'key' => 'demo_theme_textbox',
@@ -165,8 +165,8 @@ class ThemeOptions {
 
 		 	/* Custom option if none of the above standard ones fit your purpose. You define what to do and show within the method handleOption() below */
 			gettext('Theme colors') => array(
-				'key' => 'Theme_colors', 
-				'type' => OPTION_TYPE_CUSTOM, 
+				'key' => 'demoTheme_colors',
+				'type' => OPTION_TYPE_CUSTOM,
 				'desc' => gettext('Select the colors of the theme'))
 			);
 
@@ -182,7 +182,7 @@ class ThemeOptions {
 																Then there is an option type for notes only</p>') // the class 'notebox' is a standard class for styling notes on the backend, there is also 'errorbox' for errors. Of cours
 				);
 			}
-		return $options;					
+		return $options;
 	}
 	// If your theme for example uses specific image sizes for layout reasons you can disable the standard image size options here
   function getOptionsDisabled() {
@@ -190,9 +190,9 @@ class ThemeOptions {
   }
 
 	function handleOption($option, $currentValue) {
-		global $themecolors;
-		if ($option == 'Theme_colors') {
-			echo '<select id="EF_themeselect_colors" name="' . $option . '"' . ">\n";
+		$themecolors = array('red', 'white','blue', 'none');
+		if ($option == 'demoTheme_colors') {
+			echo '<select id="demoTheme_themeselect_colors" name="' . $option . '"' . ">\n";
 			generateListFromArray(array($currentValue), $themecolors, false, false);
 			echo "</select>\n";
 		}
