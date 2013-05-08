@@ -9,7 +9,7 @@
 		<title><?php echo getBareGalleryTitle(); ?> | <?php echo gettext("Search"); ?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-		<?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 	</head>
 	<body>
 		<?php
@@ -47,7 +47,7 @@
 		?>
 		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); ?>
-		<?php printRSSLink('Gallery','','RSS', ' | '); ?>
+		<?php if (class_exists('RSS')) printRSSLink('Gallery','','RSS', ' | '); ?>
 		<?php printZenphotoLink(); ?>
 		<?php
 			zp_apply_filter('theme_body_close');

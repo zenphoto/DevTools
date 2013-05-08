@@ -9,7 +9,7 @@
 		<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle();?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-		<?php printRSSHeaderLink('Album',getAlbumTitle()); ?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Album',getAlbumTitle()); ?>
 </head>
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>
@@ -19,7 +19,7 @@
 				printSearchForm("","search","",gettext("Search gallery"));
 			}
 		?>
-		<?php printAlbumDesc(true); ?>
+		<?php printAlbumDesc(); ?>
 		<?php while (next_album()): ?>
 			<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php echo getAnnotatedAlbumTitle();?>"><?php printAlbumThumbImage(getAnnotatedAlbumTitle()); ?></a>
 			<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php echo getAnnotatedAlbumTitle();?>"><?php printAlbumTitle(); ?></a>
@@ -32,7 +32,7 @@
 		<?php endwhile; ?>
 		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); ?>
-		<?php printRSSLink('Gallery','','RSS', ' | '); ?>
+		<?php if (class_exists('RSS')) printRSSLink('Gallery','','RSS', ' | '); ?>
 		<?php printZenphotoLink(); ?>
 		<?php
 			zp_apply_filter('theme_body_close');
