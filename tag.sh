@@ -13,6 +13,13 @@ then
 else
   REL=$VERSION
 fi
+echo "Did you remember to set the version to %VERSION%?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) make install; break;;
+        No ) exit;;
+    esac
+done
 echo "Tagging $VERSION (REL=$REL)..."
 git tag -a -m "Zenphoto version %VERSION%" zenphoto-$REL
-git push --tags
+tag.shgit push --tags
