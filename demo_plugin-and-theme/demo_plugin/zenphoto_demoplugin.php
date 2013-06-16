@@ -34,6 +34,8 @@ They are:
 NOTE: you "or" these to the base priority. It is permissable to "or" ADMIN_PLUGIN with THEME_PLUGIN to
 get a plugin that operates in both environments. CLASS_PLUGIN stands alone as these plugins
 will always be loaded.
+
+NOTE: These variables are parsed from the file since they are used even if the plugin is not activated (=loaded). So you need to remove those you don't want to use, e.g. simply commenting out the $option_interface line will not do it if your plugin has no options. It would still be listed as plugin having options.
 */
 $plugin_is_filter = 5|THEME_PLUGIN;
 
