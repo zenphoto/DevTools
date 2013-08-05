@@ -13,6 +13,7 @@ then
 else
   REL=$VERSION
 fi
+grep 'ZENPHOTO_VERSION' zp-core/version.php
 echo "Did you remember to set the version to %VERSION%?"
 select yn in "Yes" "No"; do
     case $yn in
