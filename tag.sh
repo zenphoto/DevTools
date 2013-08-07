@@ -13,6 +13,7 @@ then
 else
   REL=$VERSION
 fi
+grep 'ZENPHOTO_VERSION' zp-core/version.php
 echo "Did you remember to set the version to %VERSION%?"
 select yn in "Yes" "No"; do
     case $yn in
@@ -21,5 +22,7 @@ select yn in "Yes" "No"; do
     esac
 done
 echo "Tagging $VERSION (REL=$REL)..."
+git_head.sh
+git push
 git tag -a -m "Zenphoto version %VERSION%" zenphoto-$REL
 tag.shgit push --tags
