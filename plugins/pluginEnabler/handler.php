@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Bulk enable/disable of plugins
  * @package core
  */
 // force UTF-8 Ø
 define('OFFSET_PATH', 3);
-require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME'])))."/zp-core/admin-globals.php");
+require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))) . "/zp-core/admin-globals.php");
 
 admin_securityChecks(ADMIN_RIGHTS, $return = currentRelativeURL());
 
@@ -28,7 +29,7 @@ if (isset($_GET['pluginsEnable'])) {
 			break;
 		case 2:
 			$report = gettext('Remembered plugins enabled');
-			$savedlist = unserialize(getOption('pluginEnabler_currentset'));
+			$savedlist = getSerializedArray(getOption('pluginEnabler_currentset'));
 			break;
 		case 3:
 			$report = gettext('All plugins enabled');
@@ -36,10 +37,10 @@ if (isset($_GET['pluginsEnable'])) {
 	}
 	foreach ($pluginlist as $extension) {
 		if ($extension != 'pluginEnabler') {
-			$opt = 'zp_plugin_'.$extension;
+			$opt = 'zp_plugin_' . $extension;
 			switch ($setting) {
 				case 1:
-					if (strpos($paths[$extension],ZENFOLDER) !== false && $extension != 'show_not_logged-in') {
+					if (strpos($paths[$extension], ZENFOLDER) !== false && $extension != 'show_not_logged-in') {
 						$enable = true;
 						break;
 					}
@@ -47,7 +48,7 @@ if (isset($_GET['pluginsEnable'])) {
 					$enable = false;
 					break;
 				case 2:
-					if (!in_array($extension,$savedlist)) {
+					if (!in_array($extension, $savedlist)) {
 						$enable = false;
 						break;
 					}
@@ -65,17 +66,17 @@ if (isset($_GET['pluginsEnable'])) {
 						}
 					}
 				}
-				$plugin_is_filter = 1|THEME_PLUGIN;
+				$plugin_is_filter = 1 | THEME_PLUGIN;
 				if ($str = isolate('$plugin_is_filter', $pluginStream)) {
 					eval($str);
 					if ($plugin_is_filter < THEME_PLUGIN) {
 						if ($plugin_is_filter < 0) {
-							$plugin_is_filter = abs($plugin_is_filter)|THEME_PLUGIN|ADMIN_PLUGIN;
+							$plugin_is_filter = abs($plugin_is_filter) | THEME_PLUGIN | ADMIN_PLUGIN;
 						} else {
 							if ($plugin_is_filter == 1) {
-								$plugin_is_filter = 1|THEME_PLUGIN;
+								$plugin_is_filter = 1 | THEME_PLUGIN;
 							} else {
-								$plugin_is_filter = $plugin_is_filter|CLASS_PLUGIN;
+								$plugin_is_filter = $plugin_is_filter | CLASS_PLUGIN;
 							}
 						}
 					}
@@ -88,6 +89,5 @@ if (isset($_GET['pluginsEnable'])) {
 		}
 	}
 }
-header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?report='.$report);
-
+header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?report=' . $report);
 ?>
