@@ -129,43 +129,43 @@ class demoplugin_options {
 										'order'		 => 7, // the order position the option should have on the plugin option
 										'buttons'	 => array(// The definition of the radio buttons to choose from and their values.
 														//You can of course have more than three.
-														gettext_pl('Suboption 1-a', 'zenphoto_demoplugin')	 => 'suboption1-a',
-														gettext_pl('Suboption 1-b', 'zenphoto_demoplugin')	 => 'suboption1-b',
-														gettext_pl('Suboption 1-c', 'zenphoto_demoplugin')	 => 'suboption1-c'
+														gettext_pl('Suboption 1-a', 'zenphoto_demoplugin') => 'suboption1-a',
+														gettext_pl('Suboption 1-b', 'zenphoto_demoplugin') => 'suboption1-b',
+														gettext_pl('Suboption 1-c', 'zenphoto_demoplugin') => 'suboption1-c'
 										),
 										'desc'		 => gettext_pl('Description', 'zenphoto_demoplugin')
 						), // The description of the option
 
 						/* Checkbox list as an array */
-						gettext_pl('Checkbox array list option', 'zenphoto_demoplugin') => array(
+						gettext_pl('Checkbox array list option', 'zenphoto_demoplugin')		 => array(
 										'key'				 => 'demoplugin_checkbox_array',
 										'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
 										'order'			 => 0,
 										'checkboxes' => array(// The definition of the checkboxes
-														gettext_pl('Suboption 2-a', 'zenphoto_demoplugin')	 => 'suboption2-a',
-														gettext_pl('Suboption 2-b', 'zenphoto_demoplugin')	 => 'suboption2-b',
-														gettext_pl('Suboption 2-c', 'zenphoto_demoplugin')	 => 'suboption2-c'
+														gettext_pl('Suboption 2-a', 'zenphoto_demoplugin') => 'suboption2-a',
+														gettext_pl('Suboption 2-b', 'zenphoto_demoplugin') => 'suboption2-b',
+														gettext_pl('Suboption 2-c', 'zenphoto_demoplugin') => 'suboption2-c'
 										),
 										'desc'			 => gettext_pl('Description', 'zenphoto_demoplugin')),
 						/* Checkbox list as an unordered html list */
-						gettext_pl('Checkbox list', 'zenphoto_demoplugin') => array(
+						gettext_pl('Checkbox list', 'zenphoto_demoplugin')								 => array(
 										'key'				 => 'demoplugin_checkbox_list',
 										'type'			 => OPTION_TYPE_CHECKBOX_UL,
 										'order'			 => 0,
 										'checkboxes' => array(// The definition of the checkboxes
-														gettext_pl('Suboption 3-a', 'zenphoto_demoplugin')	 => 'suboption3-a',
-														gettext_pl('Suboption 3-b', 'zenphoto_demoplugin')	 => 'suboption3-b',
-														gettext_pl('Suboption 3-c', 'zenphoto_demoplugin')	 => 'suboption3-c'
+														gettext_pl('Suboption 3-a', 'zenphoto_demoplugin') => 'suboption3-a',
+														gettext_pl('Suboption 3-b', 'zenphoto_demoplugin') => 'suboption3-b',
+														gettext_pl('Suboption 3-c', 'zenphoto_demoplugin') => 'suboption3-c'
 										),
 										'desc'			 => gettext_pl('Description', 'zenphoto_demoplugin')),
 						/* One checkbox only option */
-						gettext_pl('One Checkbox option only', 'zenphoto_demoplugin') => array(
+						gettext_pl('One Checkbox option only', 'zenphoto_demoplugin')			 => array(
 										'key'		 => 'demoplugin_checkbox',
 										'type'	 => OPTION_TYPE_CHECKBOX,
 										'order'	 => 2,
 										'desc'	 => gettext_pl('Description', 'zenphoto_demoplugin')),
 						/* Input text field option */
-						gettext_pl('Input text field option', 'zenphoto_demoplugin') => array(
+						gettext_pl('Input text field option', 'zenphoto_demoplugin')			 => array(
 										'key'					 => 'demoplugin_textbox',
 										'type'				 => OPTION_TYPE_TEXTBOX,
 										'multilingual' => 1, // optional if the field should be multilingual if Zenphoto is run in that mode.
@@ -173,19 +173,19 @@ class demoplugin_options {
 										'order'				 => 9,
 										'desc'				 => gettext_pl('Description', 'zenphoto_demoplugin')),
 						/* Password input field option */
-						gettext_pl('Password input field option', 'zenphoto_demoplugin') => array(
+						gettext_pl('Password input field option', 'zenphoto_demoplugin')	 => array(
 										'key'		 => 'demoplugin_input_password',
 										'type'	 => OPTION_TYPE_PASSWORD,
 										'order'	 => 9,
 										'desc'	 => gettext_pl('Description', 'zenphoto_demoplugin')),
 						/* Cleartext option */
-						gettext_pl('Cleartext input field option', 'zenphoto_demoplugin') => array(
+						gettext_pl('Cleartext input field option', 'zenphoto_demoplugin')	 => array(
 										'key'		 => 'demoplugin_input_cleartext',
 										'type'	 => OPTION_TYPE_CLEARTEXT,
 										'order'	 => 9,
 										'desc'	 => gettext_pl('Description', 'zenphoto_demoplugin')),
 						/* Textareafield option */
-						gettext_pl('Textarea field option', 'zenphoto_demoplugin') => array(
+						gettext_pl('Textarea field option', 'zenphoto_demoplugin')				 => array(
 										'key'					 => 'demoplugin_textarea',
 										'type'				 => OPTION_TYPE_TEXTAREA,
 										'texteditor'	 => 1, // optional to enable the visual editor TinyMCE on this field
@@ -194,24 +194,24 @@ class demoplugin_options {
 										'order'				 => 9,
 										'desc'				 => gettext_pl('Description', 'zenphoto_demoplugin')),
 						/* Dropdown selector option */
-						gettext_pl('Dropdown selector option', 'zenphoto_demoplugin') => array(
+						gettext_pl('Dropdown selector option', 'zenphoto_demoplugin')			 => array(
 										'key'						 => 'demoplugin_selector',
 										'type'					 => OPTION_TYPE_SELECTOR,
 										'order'					 => 1,
 										'selections'		 => array(// The definition of the selector values. You can of course have more than three.
-														gettext_pl('Suboption1', 'zenphoto_demoplugin') => 'suboption1',
-														gettext_pl('Suboption2', 'zenphoto_demoplugin') => 'suboption2',
-														gettext_pl('Suboption3', 'zenphoto_demoplugin') => 'suboption3'
+														gettext_pl('Suboption1', 'zenphoto_demoplugin')	 => 'suboption1',
+														gettext_pl('Suboption2', 'zenphoto_demoplugin')	 => 'suboption2',
+														gettext_pl('Suboption3', 'zenphoto_demoplugin')	 => 'suboption3'
 										),
 										'null_selection' => gettext_pl('Disabled', 'zenphoto_demoplugin'), // Provides a NULL value to select to the above selections
 										'desc'					 => gettext_pl('Description.', 'zenphoto_demoplugin')),
 						/* jQuery color picker option */
-						gettext_pl('jQuery color picker option', 'zenphoto_demoplugin') => array(
+						gettext_pl('jQuery color picker option', 'zenphoto_demoplugin')		 => array(
 										'key'	 => 'demoplugin_colorpicker',
 										'type' => OPTION_TYPE_COLOR_PICKER,
 										'desc' => gettext_pl('Description', 'zenphoto_demoplugin')),
 						/* Custom option if none of the above standard ones fit your purpose. You define what to do and show within the method handleOption() below */
-						gettext_pl('Custom option', 'zenphoto_demoplugin') => array(
+						gettext_pl('Custom option', 'zenphoto_demoplugin')								 => array(
 										'key'	 => 'demoplugin_customoption', // note that this name is referenced in handleOption() below!
 										'type' => OPTION_TYPE_CUSTOM,
 										'desc' => gettext_pl('Custom option if none of the above standard ones fit your purpose. You define what to do and show within the method handleOption(). In this case we mask the input which in actuality is shown in the field below.', 'zenphoto_demoplugin'), getOption('demoplugin_customoption'))
@@ -290,6 +290,7 @@ class demoplugin_options {
 			if (isset($_POST['demoplugin_customoption'])) {
 				setOption('demoplugin_customoption', sanitize($_POST['demoplugin_customoption']));
 			}
+			return false;
 		}
 
 	}
