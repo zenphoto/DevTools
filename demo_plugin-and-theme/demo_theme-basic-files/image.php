@@ -29,19 +29,17 @@
 		<?php } ?>
 		<?php printHomeLink('', ' | '); ?><a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php gettext('Albums Index'); ?>"><?php echo getGalleryTitle();?></a> | <?php printParentBreadcrumb("", " | ", " | "); printAlbumBreadcrumb("", " | "); ?><?php printImageTitle(true); ?>
 		<a href="<?php echo html_encode($fullimage);?>" title="<?php echo getBareImageTitle();?>">
-			<?php printDefaultSizedImage(getImageTitle()); ?>
+			<?php printDefaultSizedImage(getImageTitle()); // the single sizeed image ?>
 		</a>
-		<?php printImageDesc(); ?>
+		<?php printImageDesc(); // the image description ?>
 		<?php
 			if (getImageMetaData()) {
-				printImageMetadata('', false); ;
+				printImageMetadata('', false); // the image meta data like Exif
 			}
 		?>
 		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); ?>
 		<?php if (class_exists('RSS')) printRSSLink('Gallery','','RSS', ' | '); ?>
 		<?php printZenphotoLink(); ?>
-		<?php
-			zp_apply_filter('theme_body_close');
-		?>
+		<?php zp_apply_filter('theme_body_close'); ?>
 	</body>
 </html>

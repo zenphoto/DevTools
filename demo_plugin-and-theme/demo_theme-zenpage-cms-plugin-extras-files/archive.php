@@ -1,7 +1,6 @@
 <?php
 /** 
- * If your theme contains this script it will be invoked whenever a page not found condition is raised by Zenphoto. 
- * Creating a script of this name allows you to control the presentaton of the page not found error. 
+ * Custom theme page for displaying the yearly and monthly archive of gallery items and Zenpage news articles 
  */
 if (!defined('WEBPATH')) die();
 ?>
@@ -18,14 +17,21 @@ if (!defined('WEBPATH')) die();
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>
 		<?php printGalleryTitle(); ?>
+		<a href="<?php echo getGalleryIndexURL(); ?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <strong><?php echo gettext("Archive View"); ?>
 		<?php
 			if (getOption('Allow_search')) {
 				printSearchForm("","search","",gettext("Search gallery"));
 			}
 		?>
 		<a href="<?php echo getGalleryIndexURL(); ?>">Index</a> » <?php echo gettext("Object not found"); ?>
-	  <?php print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj); ?>
-		<?php if (class_exists('RSS')) printRSSLink('Gallery','','RSS', ' | '); ?>
+		<?php printAllDates(); // prints the gallery archive list by year and month ?>
+		<?php 
+			// Support for the Zenpage news archive
+			if (function_exists("printNewsArchive")) { 
+				printNewsArchive("archive"); 	
+			} 
+		?>
+		<?php printAllTagsAs('cloud', 'tags'); // a tag cloud of all tags ?>
 		<?php printZenphotoLink(); ?>
 		<?php zp_apply_filter('theme_body_close'); ?>
 	</body>

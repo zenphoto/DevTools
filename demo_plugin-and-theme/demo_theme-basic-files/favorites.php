@@ -1,6 +1,6 @@
 <?php
 /** 
- * This page is almost identical to index.php. Standard theme page for sub level album list and/or the thumbnail overview of images within an album
+ * A page to display user favorites if the favorites plugin is enabled
  */
 	if (!defined('WEBPATH')) die();
 ?>
@@ -28,21 +28,11 @@
 			<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php echo getAnnotatedAlbumTitle();?>"><?php printAlbumTitle(); ?></a>
 			<?php printAlbumDate(""); ?>
 			<?php printAlbumDesc(); // the album description?>
-			<?php
-				// Optional support for the favoritse plugin 
-				if (function_exists('printAddToFavorites')) {
-					printAddToFavorites($_zp_current_album);
-				}
-			?> 
+			<?php printAddToFavorites($_zp_current_album, '', gettext('Remove')); // button to remove itmes from favorites ?>
 		<?php endwhile; ?>
 		<?php while (next_image()): // the loop of the image within the album ?>
 			<a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle();?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a>
-			<?php
-				// Optional support for the favoritse plugin 
-				if (function_exists('printAddToFavorites')) {
-					printAddToFavorites($_zp_current_image);
-				}
-			?>
+			<?php printAddToFavorites($_zp_current_image, '', gettext('Remove')); // button to remove itmes from favorites?>
 		<?php endwhile; ?>
 		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); ?>

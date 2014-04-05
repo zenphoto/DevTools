@@ -52,8 +52,6 @@
 		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); ?>
 		<?php if (class_exists('RSS')) printRSSLink('Gallery','','RSS', ' | '); ?>
 		<?php printZenphotoLink(); ?>
-		<?php
-			zp_apply_filter('theme_body_close');
-		?>
+		<?php zp_apply_filter('theme_body_close'); ?>
 	</body>
 </html>
