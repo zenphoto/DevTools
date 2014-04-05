@@ -1,5 +1,7 @@
 <?php
-// force UTF-8 Ø
+/** 
+ * Search page extended for search results of Zenpage CMS items
+ */
 if (!defined('WEBPATH')) die();
 ?>
 <!DOCTYPE html>
@@ -7,7 +9,8 @@ if (!defined('WEBPATH')) die();
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
-		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
+		<meta charset="<?php echo LOCAL_CHARSET; ?>"><!-- HTML5 style -->
+		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" /><!-- Old HTML style - Fallback for older browsers -->
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 	</head>

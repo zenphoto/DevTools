@@ -1,8 +1,8 @@
 <?php
- /** 
-  * The gallery index (home page) of a theme. Usually prints the top level albums
-  */
-	if (!defined('WEBPATH')) die();
+/** 
+ * Standard theme page for 404 errors for not found items
+ */
+if (!defined('WEBPATH')) die();
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,14 +22,8 @@
 				printSearchForm("","search","",gettext("Search gallery"));
 			}
 		?>
-		<?php printGalleryDesc(); ?>
-		<?php while (next_album()): ?>
-			<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php echo getAnnotatedAlbumTitle();?>"><?php printAlbumThumbImage(getAnnotatedAlbumTitle()); ?></a>
-			<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php echo getAnnotatedAlbumTitle();?>"><?php printAlbumTitle(); ?></a>
-			<?php printAlbumDate(""); ?>
-			<?php printAlbumDesc(); ?>
-		<?php endwhile; ?>
-		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
+		<a href="<?php echo getGalleryIndexURL(); ?>">Index</a> » <?php echo gettext("Object not found"); ?>
+	  <?php print404status(isset($album) ? $album : NULL, isset($image) ? $image : NULL, $obj); ?>
 		<?php if (class_exists('RSS')) printRSSLink('Gallery','','RSS', ' | '); ?>
 		<?php printZenphotoLink(); ?>
 		<?php

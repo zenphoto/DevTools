@@ -1,5 +1,7 @@
 <?php
-	// force UTF-8
+/** 
+ * Standard theme page for sub level album list and/or the thumbnail overview of images within an album
+ */
 	if (!defined('WEBPATH')) die();
 ?>
 <!DOCTYPE html>
@@ -7,7 +9,8 @@
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
-		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
+		<meta charset="<?php echo LOCAL_CHARSET; ?>"><!-- HTML5 style -->
+		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" /><!-- Old HTML style - Fallback for older browsers -->
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album',getAlbumTitle()); ?>
 </head>
