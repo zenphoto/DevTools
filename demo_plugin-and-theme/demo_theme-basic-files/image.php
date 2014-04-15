@@ -31,15 +31,19 @@
 		<a href="<?php echo html_encode($fullimage);?>" title="<?php echo getBareImageTitle();?>">
 			<?php printDefaultSizedImage(getImageTitle()); // the single sizeed image ?>
 		</a>
-		<?php printImageDesc(); // the image description ?>
-		<?php
+		<?php 
+			printImageDesc(); // the image description 
 			if (getImageMetaData()) {
 				printImageMetadata('', false); // the image meta data like Exif
 			}
+			printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); 
+			if (class_exists('RSS')) printRSSLink('Gallery','','RSS', ' | '); 
+			//support for the comment form plugin
+			if (function_exists('printCommentForm')) { 
+				printCommentForm();  
+			} 
+		 	printZenphotoLink();
+			zp_apply_filter('theme_body_close'); 
 		?>
-		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); ?>
-		<?php if (class_exists('RSS')) printRSSLink('Gallery','','RSS', ' | '); ?>
-		<?php printZenphotoLink(); ?>
-		<?php zp_apply_filter('theme_body_close'); ?>
 	</body>
 </html>

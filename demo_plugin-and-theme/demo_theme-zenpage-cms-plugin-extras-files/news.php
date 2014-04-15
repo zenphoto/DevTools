@@ -36,6 +36,10 @@
 					printNewsCategories(", ",gettext("Categories: "),"newscategories"); ?>
 					printNewsContent(); 
 					printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', '); 		
+					//comment form plugin support
+					if (function_exists('printCommentForm')) { 
+						printCommentForm();  
+					} 
 				} else { // news article loop
 					while (next_news()): ?>
 						printNewsURL();

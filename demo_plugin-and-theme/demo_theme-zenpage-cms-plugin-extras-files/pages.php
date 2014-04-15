@@ -22,13 +22,17 @@
 					if (getOption('Allow_search')) { 
 						printSearchForm("","search","",gettext("Search gallery")); 
 					} 
+					printPageTitle();
+					printPageContent();
+					printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', ');	
+					printRSSLink('Gallery','','RSS', ' | '); 
+					printZenpageRSSLink("News","","",gettext("News"),''); 
+					//comment form plugin support
+					if (function_exists('printCommentForm')) { 
+						printCommentForm();  
+					} 
+					zp_apply_filter('theme_body_close'); 
 				?>
-				<?php printPageTitle(); ?>		
-				<?php printPageContent(); ?>
-				<?php	printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', ');	?>
-				<?php printRSSLink('Gallery','','RSS', ' | '); ?>
-				<?php printZenpageRSSLink("News","","",gettext("News"),''); ?>
-				<?php zp_apply_filter('theme_body_close'); ?>
 			</body>
 		</html>
 	<?php

@@ -43,12 +43,16 @@
 					printAddToFavorites($_zp_current_image);
 				}
 			?>
-		<?php endwhile; ?>
-		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
-		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); ?>
-		<?php if (class_exists('RSS')) printRSSLink('Gallery','','RSS', ' | '); ?>
-		<?php printZenphotoLink(); ?>
-		<?php
+		<?php 
+			endwhile; 
+			printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); 
+			printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); 
+			if (class_exists('RSS')) printRSSLink('Gallery','','RSS', ' | '); 
+			//Support for the comment form plugin
+			if (function_exists('printCommentForm')) {
+				printCommentForm();  
+			} 
+			printZenphotoLink(); 
 			zp_apply_filter('theme_body_close');
 		?>
 	</body>
