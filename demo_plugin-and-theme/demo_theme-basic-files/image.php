@@ -28,7 +28,7 @@
 			<a href="<?php echo html_encode(getNextImageURL());?>" title="<?php echo gettext("Next Image"); ?>"><?php echo gettext("next"); ?></a>
 		<?php } ?>
 		<?php printHomeLink('', ' | '); ?><a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php gettext('Albums Index'); ?>"><?php echo getGalleryTitle();?></a> | <?php printParentBreadcrumb("", " | ", " | "); printAlbumBreadcrumb("", " | "); ?><?php printImageTitle(true); ?>
-		<a href="<?php echo html_encode($fullimage);?>" title="<?php echo getBareImageTitle();?>">
+		<a href="<?php echo html_encode(getFullImageURL());?>" title="<?php echo getBareImageTitle();?>">
 			<?php printDefaultSizedImage(getImageTitle()); // the single sizeed image ?>
 		</a>
 		<?php 
