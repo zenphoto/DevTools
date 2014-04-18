@@ -138,7 +138,7 @@ if (!defined('OFFSET_PATH')) {
 										}
 									}
 								}
-								if ($double || $single && $lang != 'en_US') {
+								if (($double || $single) && $lang != 'en_US') {
 
 									echo '<br/>';
 									if ($double && $single) {
