@@ -38,6 +38,12 @@ class findQuotes_options {
 
 }
 
+function stripEscaped($str) {
+	$str = str_replace('\\"', '', $str);
+	$str = str_replace("\\'", '', $str);
+	return $str;
+}
+
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
 	require_once(dirname(dirname($_SERVER['SCRIPT_NAME'])) . '/zp-core/admin-globals.php');
@@ -107,10 +113,10 @@ if (!defined('OFFSET_PATH')) {
 							if (!empty($msgids)) {
 								foreach ($msgids as $id => $msgid) {
 									$listed = $double = $single = false;
-									if (strpos($msgid, '"') === false) {
+									if (strpos(stripEscaped($msgid), '"') === false) {
 										//no English "
 										foreach ($msgstrs as $str => $msgstr) {
-											if (strpos($msgstr, '"') !== false) {
+											if (strpos(stripEscaped($msgstr), '"') !== false) {
 												//one inserted in the translation
 												$double = '"';
 											}
@@ -124,10 +130,10 @@ if (!defined('OFFSET_PATH')) {
 								}
 
 								foreach ($msgids as $id => $msgid) {
-									if (strpos($msgid, "'") === false) {
+									if (strpos(stripEscaped($msgid), "'") === false) {
 										//no English '
 										foreach ($msgstrs as $str => $msgstr) {
-											if (strpos($msgstr, "'") !== false) {
+											if (strpos(stripEscaped($msgstr), "'") !== false) {
 												//one inserted in the translation
 												$single = "'";
 											}
