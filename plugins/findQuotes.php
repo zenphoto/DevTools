@@ -42,94 +42,130 @@ if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
 	require_once(dirname(dirname($_SERVER['SCRIPT_NAME'])) . '/zp-core/admin-globals.php');
 	printAdminHeader('overview', 'DB');
-	echo "\n</head>";
-	echo "\n<body>";
-
-	printLogoAndLinks();
-	echo "\n" . '<div id="main">';
-	printTabs();
-
-	echo "\n" . '<div id="content">';
-	printAdminFooter();
 	$lang = getOption('findQuotes_target');
-	if ($lang = 'en_EN') {
+	if ($lang == 'en_EN') {
 		$filepath = SERVERPATH . '/' . ZENFOLDER . '/locale/de_DE/LC_MESSAGES/zenphoto.po'; // presumed to be up-to-date
 	} else {
 		$filepath = SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/LC_MESSAGES/zenphoto.po';
 	}
-	$text = file_get_contents($filepath);
-	if ($text) {
-		$lines = explode("\n", $text);
-		?>
-		<h1><?php echo $lang; ?></h1>
-		<?php
-		$c = 0;
-		while (!empty($lines)) {
-			@set_time_limit(30);
-			$line = trim(array_shift($lines));
-			$c++;
-			if (strpos($line, 'msgid') === 0) {
-				$msgid = trim(preg_replace('~msgid\s*~', '', $line), '"');
-				$idln = $c;
-				do {
-					$line = trim(array_shift($lines));
-					$c++;
-					$done = strpos($line, 'msgstr') !== false;
-					if (!$done) {
-						$msgid .= trim($line, '"');
-					}
-				} while (!$done);
-				$msgstr = trim(preg_replace('~msgstr\s*~', '', $line), '"');
-				$strln = $c;
-				do {
-					$line = trim(array_shift($lines));
-					$c++;
-					$done = empty($line);
-					if (!$done)
-						$msgstr .= trim($line, '"');
-				} while (!$done);
-				if (!empty($msgid)) {
-					$double = $single = false;
-					if (strpos($msgid, '"') === false) {
-						//no English "
-						if (strpos($msgstr, '"' !== false)) {
-							//one inserted in the translation
-							$double = '"';
-						}
-					} else {
-						if ($lang = 'en_EN') {
-							echo $idln . ':' . '<strong>$msgid:</strong>' . html_encode($msgid) . '<br/>';
-						}
-					}
-					if (strpos($msgid, "'") === false) {
-						//no English '
-						if (strpos($msgstr, "'") !== false) {
-							//one inserted in the translation
-							$single = "'";
-						}
-					} else {
-						if ($lang = 'en_EN') {
-							echo $idln . ':' . '<strong>$msgid:</strong>' . html_encode($msgid) . '<br/>';
-						}
-					}
-					if ($double || $single) {
-						echo '<br/>';
-						if ($double && $single) {
-							echo gettext('Translation has inserted both single and double quotes.') . '<br/>';
-						} else {
-							if ($single) {
-								echo gettext('Translation has inserted single quotes.') . '<br/>';
-							} else {
-								echo gettext('Translation has inserted double quotes.') . '<br/>';
+	echo '</head>';
+	?>
+	<body>
+		<?php printLogoAndLinks(); ?>
+		<div id="main">
+			<?php printTabs(); ?>
+			<div id="content">
+				<h1><?php echo $lang; ?></h1>
+				<?php
+				$text = file_get_contents($filepath);
+				if ($text) {
+					$lines = explode("\n", $text);
+					$c = 0;
+					while (!empty($lines)) {
+						@set_time_limit(30);
+						$line = trim(array_shift($lines));
+						$c++;
+						$msgids = array();
+						if (strpos($line, 'msgid') === 0) {
+							$msgids['msgid'] = trim(preg_replace('~msgid\s*~', '', $line), '"');
+							$idln = $c;
+							do {
+								$line = trim(array_shift($lines));
+								$c++;
+								$done = strpos($line, 'msgstr') !== false || strpos($line, 'msgid_plural') !== false;
+								if (!$done) {
+									$msgids['msgid'] .= trim($line, '"');
+								}
+							} while (!$done);
+							if (strpos($line, 'msgid_plural') !== false) {
+								$msgids['msgid_plural'] = trim(preg_replace('~msgid_plural\s*~', '', $line), '"');
+								do {
+									$line = trim(array_shift($lines));
+									$c++;
+									$done = strpos($line, 'msgstr') !== false;
+									if (!$done) {
+										$msgids['msgid_plural'] .= trim($line, '"');
+									}
+								} while (!$done);
+							}
+							$msgstrs = array();
+							preg_match('~(msgstr[\[\d+\]]*)~', $line, $matches);
+							$msgstrs[$matches[1]] = trim(preg_replace('~msgstr[\[\d+\]]*\s*~', '', $line), '"');
+							do {
+								$line = trim(array_shift($lines));
+								$c++;
+								if (strpos($line, 'msgstr') !== false) {
+									preg_match('~(msgstr[\[\d+\]]*)~', $line, $matches);
+									$msgstrs[$matches[1]] = trim(preg_replace('~msgstr[\[\d+\]]*\s*~', '', $line), '"');
+								} else {
+									$done = empty($line);
+									if (!$done)
+										$msgstrs[$matches[1]] .= trim($line, '"');
+								}
+							} while (!$done);
+
+							if (!empty($msgids)) {
+								foreach ($msgids as $id => $msgid) {
+									$listed = $double = $single = false;
+									if (strpos($msgid, '"') === false) {
+										//no English "
+										foreach ($msgstrs as $str => $msgstr) {
+											if (strpos($msgstr, '"') !== false) {
+												//one inserted in the translation
+												$double = '"';
+											}
+										}
+									} else {
+										if ($lang == 'en_EN') {
+											echo $idln . ':' . '<strong>' . $id . ':</strong> ' . html_encode($msgid) . '<br/>';
+											$listed = true;
+										}
+									}
+								}
+
+								foreach ($msgids as $id => $msgid) {
+									if (strpos($msgid, "'") === false) {
+										//no English '
+										foreach ($msgstrs as $str => $msgstr) {
+											if (strpos($msgstr, "'") !== false) {
+												//one inserted in the translation
+												$single = "'";
+											}
+										}
+									} else {
+										if (!$listed && $lang == 'en_EN') {
+											echo $idln . ':' . '<strong>' . $id . ':</strong> ' . html_encode($msgid) . '<br/>';
+										}
+									}
+								}
+								if ($double || $single && $lang != 'en_EN') {
+
+									echo '<br/>';
+									if ($double && $single) {
+										echo printf(gettext('At line %s translation has inserted both single and double quotes.'), $idln) . '<br/>';
+									} else {
+										if ($single) {
+											echo printf(gettext('At line %s translation has inserted single quotes.'), $idln) . '<br/>';
+										} else {
+											echo printf(gettext('At line %s translation has inserted double quotes.'), $idln) . '<br/>';
+										}
+									}
+									foreach ($msgids as $id => $msgid) {
+										echo '<strong>' . $id . ':</strong> ' . html_encode($msgid) . '<br/>';
+									}
+									foreach ($msgstrs as $str => $msgstr) {
+										echo '<strong>' . $str . ':</strong> ' . html_encode($msgstr) . '<br/>';
+									}
+								}
 							}
 						}
-						echo $idln . ':' . '<strong>$msgid:</strong>' . html_encode($msgid) . '<br/>';
-						echo $strln . ':' . '<strong>$msgstr:</strong>' . html_encode($msgstr) . '<br/>';
 					}
 				}
-			}
-		}
-	}
-	echo "\n</body>";
-	echo "\n</head>";
+				?>
+			</div>
+		</div>
+		<?php printAdminFooter(); ?>
+	</body>
+	<?php
 }
+?>
