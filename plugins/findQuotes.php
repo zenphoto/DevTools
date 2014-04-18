@@ -52,27 +52,38 @@ if (!defined('OFFSET_PATH')) {
 	echo "\n" . '<div id="content">';
 	printAdminFooter();
 	$lang = getOption('findQuotes_target');
-	$filepath = SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/LC_MESSAGES/zenphoto.po';
+	if ($lang = 'en_EN') {
+		$filepath = SERVERPATH . '/' . ZENFOLDER . '/locale/de_DE/LC_MESSAGES/zenphoto.po'; // presumed to be up-to-date
+	} else {
+		$filepath = SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/LC_MESSAGES/zenphoto.po';
+	}
 	$text = file_get_contents($filepath);
 	if ($text) {
 		$lines = explode("\n", $text);
 		?>
 		<h1><?php echo $lang; ?></h1>
 		<?php
+		$c = 0;
 		while (!empty($lines)) {
+			@set_time_limit(30);
 			$line = trim(array_shift($lines));
+			$c++;
 			if (strpos($line, 'msgid') === 0) {
 				$msgid = trim(preg_replace('~msgid\s*~', '', $line), '"');
+				$idln = $c;
 				do {
 					$line = trim(array_shift($lines));
+					$c++;
 					$done = strpos($line, 'msgstr') !== false;
 					if (!$done) {
 						$msgid .= trim($line, '"');
 					}
 				} while (!$done);
 				$msgstr = trim(preg_replace('~msgstr\s*~', '', $line), '"');
+				$strln = $c;
 				do {
 					$line = trim(array_shift($lines));
+					$c++;
 					$done = empty($line);
 					if (!$done)
 						$msgstr .= trim($line, '"');
@@ -85,12 +96,20 @@ if (!defined('OFFSET_PATH')) {
 							//one inserted in the translation
 							$double = '"';
 						}
+					} else {
+						if ($lang = 'en_EN') {
+							echo $idln . ':' . '<strong>$msgid:</strong>' . html_encode($msgid) . '<br/>';
+						}
 					}
 					if (strpos($msgid, "'") === false) {
 						//no English '
 						if (strpos($msgstr, "'") !== false) {
 							//one inserted in the translation
 							$single = "'";
+						}
+					} else {
+						if ($lang = 'en_EN') {
+							echo $idln . ':' . '<strong>$msgid:</strong>' . html_encode($msgid) . '<br/>';
 						}
 					}
 					if ($double || $single) {
@@ -104,8 +123,8 @@ if (!defined('OFFSET_PATH')) {
 								echo gettext('Translation has inserted double quotes.') . '<br/>';
 							}
 						}
-						echo '<strong>$msgid:</strong>' . html_encode($msgid) . '<br/>';
-						echo '<strong>$msgstr:</strong>' . html_encode($msgstr) . '<br/>';
+						echo $idln . ':' . '<strong>$msgid:</strong>' . html_encode($msgid) . '<br/>';
+						echo $strln . ':' . '<strong>$msgstr:</strong>' . html_encode($msgstr) . '<br/>';
 					}
 				}
 			}
