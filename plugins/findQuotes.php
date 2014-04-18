@@ -43,7 +43,7 @@ if (!defined('OFFSET_PATH')) {
 	require_once(dirname(dirname($_SERVER['SCRIPT_NAME'])) . '/zp-core/admin-globals.php');
 	printAdminHeader('overview', 'DB');
 	$lang = getOption('findQuotes_target');
-	if ($lang == 'en_EN') {
+	if ($lang == 'en_US') {
 		$filepath = SERVERPATH . '/' . ZENFOLDER . '/locale/de_DE/LC_MESSAGES/zenphoto.po'; // presumed to be up-to-date
 	} else {
 		$filepath = SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/LC_MESSAGES/zenphoto.po';
@@ -116,7 +116,7 @@ if (!defined('OFFSET_PATH')) {
 											}
 										}
 									} else {
-										if ($lang == 'en_EN') {
+										if ($lang == 'en_US') {
 											echo $idln . ':' . '<strong>' . $id . ':</strong> ' . html_encode($msgid) . '<br/>';
 											$listed = true;
 										}
@@ -133,12 +133,12 @@ if (!defined('OFFSET_PATH')) {
 											}
 										}
 									} else {
-										if (!$listed && $lang == 'en_EN') {
+										if (!$listed && $lang == 'en_US') {
 											echo $idln . ':' . '<strong>' . $id . ':</strong> ' . html_encode($msgid) . '<br/>';
 										}
 									}
 								}
-								if ($double || $single && $lang != 'en_EN') {
+								if ($double || $single && $lang != 'en_US') {
 
 									echo '<br/>';
 									if ($double && $single) {
