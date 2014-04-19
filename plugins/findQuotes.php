@@ -44,6 +44,7 @@ if (defined('OFFSET_PATH')) {
 	printAdminHeader('overview', 'findQuotes');
 	echo '</head>';
 	$list = generateLanguageList('all');
+	$lang = NULL;
 	if (isset($_POST['language'])) {
 		$selected = $lang = sanitize($_POST['language']);
 		setOption('findingQuotes_target', $lang);
@@ -59,7 +60,7 @@ if (defined('OFFSET_PATH')) {
 				<h1><?php echo gettext('Find injected quotes in translation files.'); ?></h1>
 				<form	action="<?php echo WEBPATH . "/" . USER_PLUGIN_FOLDER . '/' . 'findQuotes.php'; ?>" method="post">
 					<select name="language">
-						<?php generateListFromArray(array($lang), $list, false, true); ?>
+						<?php generateListFromArray(array($selected), $list, false, true); ?>
 					</select>
 					<button type="submit"><?php echo gettext('Go'); ?></button>
 				</form>
