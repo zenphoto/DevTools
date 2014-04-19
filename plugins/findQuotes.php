@@ -40,10 +40,16 @@ if (defined('OFFSET_PATH')) {
 	require_once(dirname(dirname($_SERVER['SCRIPT_NAME'])) . '/zp-core/functions.php');
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-globals.php');
 	zp_register_filter('admin_tabs', 'findQuotes_admin_tab');
+	setOptionDefault('findingQuotes_target', 'de_DE');
 	printAdminHeader('overview', 'findQuotes');
 	echo '</head>';
 	$list = generateLanguageList('all');
-	$lang = sanitize(@$_POST['language']);
+	if (isset($_POST['language'])) {
+		$selected = $lang = sanitize($_POST['language']);
+		setOption('findingQuotes_target', $lang);
+	} else {
+		$selected = getOption('findingQuotes_target');
+	}
 	?>
 	<body>
 		<?php printLogoAndLinks(); ?>
@@ -59,7 +65,6 @@ if (defined('OFFSET_PATH')) {
 				</form>
 				<?php
 				if ($lang) {
-
 					if ($lang == 'en_US') {
 						$filepath = SERVERPATH . '/' . ZENFOLDER . '/locale/de_DE/LC_MESSAGES/zenphoto.po'; // presumed to be up-to-date
 					} else {
