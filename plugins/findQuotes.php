@@ -33,6 +33,19 @@ function findQuotes_button($buttons) {
 	return $buttons;
 }
 
+function nextLine() {
+	global $handle, $linecounter;
+	while (!feof($handle)) {
+		$line = trim(fgets($handle));
+		$linecounter++;
+
+		if (@$line{0} != '#') {
+			return $line;
+		}
+	}
+	return NULL;
+}
+
 if (defined('OFFSET_PATH')) {
 	zp_register_filter('admin_utilities_buttons', 'findQuotes_button');
 } else {
@@ -72,21 +85,17 @@ if (defined('OFFSET_PATH')) {
 						$filepath = SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/LC_MESSAGES/zenphoto.po';
 					}
 
-					$text = file_get_contents($filepath);
-					if ($text) {
-						$lines = explode("\n", $text);
-						$c = 0;
-						while (!empty($lines)) {
+					$handle = fopen($filepath, 'r');
+					if ($handle) {
+						while (!feof($handle)) {
 							@set_time_limit(30);
-							$line = trim(array_shift($lines));
-							$c++;
 							$msgids = array();
+							$line = nextLine();
 							if (strpos($line, 'msgid') === 0) {
 								$msgids['msgid'] = trim(preg_replace('~msgid\s*~', '', $line), '"');
-								$idln = $c;
+								$idln = $linecounter;
 								do {
-									$line = trim(array_shift($lines));
-									$c++;
+									$line = nextLine();
 									$done = strpos($line, 'msgstr') !== false || strpos($line, 'msgid_plural') !== false;
 									if (!$done) {
 										$msgids['msgid'] .= trim($line, '"');
@@ -95,8 +104,7 @@ if (defined('OFFSET_PATH')) {
 								if (strpos($line, 'msgid_plural') !== false) {
 									$msgids['msgid_plural'] = trim(preg_replace('~msgid_plural\s*~', '', $line), '"');
 									do {
-										$line = trim(array_shift($lines));
-										$c++;
+										$line = nextLine();
 										$done = strpos($line, 'msgstr') !== false;
 										if (!$done) {
 											$msgids['msgid_plural'] .= trim($line, '"');
@@ -107,8 +115,7 @@ if (defined('OFFSET_PATH')) {
 								preg_match('~(msgstr[\[\d+\]]*)~', $line, $matches);
 								$msgstrs[$matches[1]] = trim(preg_replace('~msgstr[\[\d+\]]*\s*~', '', $line), '"');
 								do {
-									$line = trim(array_shift($lines));
-									$c++;
+									$line = nextLine();
 									if (strpos($line, 'msgstr') !== false) {
 										preg_match('~(msgstr[\[\d+\]]*)~', $line, $matches);
 										$msgstrs[$matches[1]] = trim(preg_replace('~msgstr[\[\d+\]]*\s*~', '', $line), '"');
