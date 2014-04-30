@@ -28,8 +28,8 @@
 
   - CLASS_PLUGIN->the plugin is loaded with the Zenphoto "classes" (album, image, etc.);
   - ADMIN_PLUGIN->the plugin is loaded with the "classes", but only on the back-end;
-  - THEME_PLUGIN->the plugin is loaded once the theme context has been established.
-
+  - FEATURE_PLUGIN->the plugin is loaded om the front end before the theme context has been established.
+	- THEME_PLUGIN->the plugin is loaded once the theme context has been established.
   NOTE: you "or" these to the base priority. It is permissable to "or" ADMIN_PLUGIN with THEME_PLUGIN to
   get a plugin that operates in both environments. CLASS_PLUGIN stands alone as these plugins
   will always be loaded.
