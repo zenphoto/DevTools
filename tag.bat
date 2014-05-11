@@ -2,7 +2,7 @@
 SET VERSION=%1
 SET BETAREL=%2
 IF NOT [%VERSION%] == [] GOTO SKIPVERSION
-	echo Usage: tag.sh VERSION_NUMBER REL
+	echo Usage: tag VERSION_NUMBER REL
   echo Where REL is the release tag, e.g. Beta, RC1, etc. or empty for a primary release.
   GOTO END
 :SKIPVERSION
