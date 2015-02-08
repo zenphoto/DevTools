@@ -24,5 +24,5 @@ done
 echo "Tagging $VERSION (REL=$REL)..."
 git_head.sh
 git push
-git tag -a -m "Zenphoto version %VERSION%" zenphoto-$REL
+git tag -a -m "Zenphoto version $VERSION" zenphoto-$REL
 git push --tags
