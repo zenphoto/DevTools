@@ -22,7 +22,7 @@ select yn in "Yes" "No"; do
     esac
 done
 echo "Tagging $VERSION (REL=$REL)..."
-git_head.sh
+./git_head.sh
 git push
 git tag -a -m "Zenphoto version $VERSION" zenphoto-$REL
 git push --tags
