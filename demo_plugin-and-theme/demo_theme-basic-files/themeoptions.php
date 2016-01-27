@@ -17,7 +17,7 @@ class ThemeOptions {
 		Here you set default values of your options.
 		The options here an an example of the default theme
 	*/
-	function ThemeOptions() {
+	function __construct() {
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('demoTheme_colors', 'none');
 		setThemeOptionDefault('albums_per_page', 6);
