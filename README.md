@@ -10,4 +10,7 @@ The files in this repository are plugins that are useful in developing Zenphoto 
 
 demo_plugin-and-theme
 ----------------------
-A starter kit if you want to create your own themes and/or plugins.
+**NOTE: This content has been moved to two individual repositories:**
+
+- https://github.com/zenphoto/demo-theme
+- https://github.com/zenphoto/demo-plugin

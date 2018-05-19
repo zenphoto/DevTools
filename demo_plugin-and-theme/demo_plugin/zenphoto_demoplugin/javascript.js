@@ -1,1 +1,0 @@
-	alert('This is from the Javascript loaded by the demo plugin via the theme_head filter');
