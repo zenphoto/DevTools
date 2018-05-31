@@ -19,10 +19,6 @@ $_zp_resident_files[] = THEMEFOLDER;
 $_zp_resident_files[] = THEMEFOLDER . '/basic';
 $_zp_resident_files = array_merge($_zp_resident_files, getResidentFiles(SERVERPATH . '/' . THEMEFOLDER . '/basic', $stdExclude));
 
-$_zp_resident_files[] = THEMEFOLDER . '/effervescence_plus';
-$_zp_resident_files = array_merge($_zp_resident_files, getResidentFiles(SERVERPATH . '/' . THEMEFOLDER . '/effervescence_plus', $stdExclude));
-
-
 $_zp_resident_files[] = THEMEFOLDER . '/garland';
 $_zp_resident_files = array_merge($_zp_resident_files, getResidentFiles(SERVERPATH . '/' . THEMEFOLDER . '/garland', $stdExclude));
 
