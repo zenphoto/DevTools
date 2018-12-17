@@ -4,12 +4,12 @@
  * @package plugins
  * @subpackage development
  *
-
-  $plugin_is_filter = 5 | ADMIN_PLUGIN;
-  $plugin_description = gettext('Use to locate programatic quotations that have been injected by translations.');
-  $plugin_author = "Stephen Billard (sbillard)";
-  $plugin_version = '1.4.6';
  */
+
+$plugin_is_filter = 5 | ADMIN_PLUGIN;
+$plugin_description = gettext('Use to locate programatic quotations that have been injected by translations.');
+$plugin_author = "Stephen Billard (sbillard)";
+$plugin_version = '1.4.7';
 
 function stripEscaped($str) {
 	$str = str_replace('\\"', '', $str);
@@ -19,16 +19,16 @@ function stripEscaped($str) {
 
 function findQuotes_button($buttons) {
 	$buttons[] = array(
-					'category'		 => gettext('Development'),
-					'enable'			 => true,
-					'button_text'	 => gettext('findQuotes'),
-					'formname'		 => 'findQuotes',
-					'action'			 => WEBPATH . "/" . USER_PLUGIN_FOLDER . '/' . 'findQuotes.php',
-					'icon'				 => 'images/burst.png',
-					'title'				 => gettext('Find injected quotes'),
-					'alt'					 => '',
-					'hidden'			 => '',
-					'rights'			 => ADMIN_RIGHTS,
+			'category' => gettext('Development'),
+			'enable' => true,
+			'button_text' => gettext('findQuotes'),
+			'formname' => 'findQuotes',
+			'action' => FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/' . 'findQuotes.php',
+			'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/burst.png',
+			'title' => gettext('Find injected quotes'),
+			'alt' => '',
+			'hidden' => '',
+			'rights' => ADMIN_RIGHTS,
 	);
 	return $buttons;
 }

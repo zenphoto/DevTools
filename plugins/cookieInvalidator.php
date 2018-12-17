@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Use when you want to clear out all cookies stored by site visitors. For instance if you have logged
  * in as an admin on a computer and forgot to log out. Then you can press the plugin button to make
@@ -11,12 +12,12 @@
  *
  *
  * @package plugin
-  * @subpackage development
+ * @subpackage development
  */
-$plugin_is_filter = 99|CLASS_PLUGIN;
+$plugin_is_filter = 99 | CLASS_PLUGIN;
 $plugin_description = gettext('Invalidates all cookies that were created earlier than the invalidate action.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.3';
+$plugin_version = '1.4.4';
 
 zp_register_filter('admin_utilities_buttons', 'cookieInvalidator::button');
 
@@ -25,25 +26,25 @@ class cookieInvalidator {
 	static function button($buttons) {
 		$base = getOption('cookieInvalidator_base');
 		$buttons[] = array(
-									'XSRFTag'=>'setInvalidateBase',
-									'category'=>gettext('Admin'),
-									'enable'=>true,
-									'button_text'=>gettext('Invalidate cookies'),
-									'formname'=>'cookieInvalidator',
-									'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=cookieInvalidator::setBase',
-									'icon'=>'images/fail.png',
-									'title'=>sprintf(gettext('Cookies prior to %s are invalid'),date('Y-m-d H:i:s',$base)),
-									'alt'=>'',
-									'hidden'=>'<input type="hidden" name="action" value="cookieInvalidator::setBase" />',
-									'rights'=>ADMIN_RIGHTS,
-									);
+				'XSRFTag' => 'setInvalidateBase',
+				'category' => gettext('Admin'),
+				'enable' => true,
+				'button_text' => gettext('Invalidate cookies'),
+				'formname' => 'cookieInvalidator',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=cookieInvalidator::setBase',
+				'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/fail.png',
+				'title' => sprintf(gettext('Cookies prior to %s are invalid'), date('Y-m-d H:i:s', $base)),
+				'alt' => '',
+				'hidden' => '<input type="hidden" name="action" value="cookieInvalidator::setBase" />',
+				'rights' => ADMIN_RIGHTS,
+		);
 		return $buttons;
 	}
 
 	static function invalidate($cookies) {
 		global $_zp_loggedin, $_zp_current_admin_obj;
 		if (zp_getCookie('cookieInvalidator') != ($newBase = getOption('cookieInvalidator_base'))) {
-			foreach ($cookies as $cookie=>$value) {
+			foreach ($cookies as $cookie => $value) {
 				zp_clearCookie($cookie);
 			}
 			zp_setCookie('cookieInvalidator', $newBase);
@@ -56,10 +57,10 @@ class cookieInvalidator {
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 		exitZP();
 	}
+
 }
 
 if (isset($_COOKIE)) {
 	cookieInvalidator::invalidate($_COOKIE);
 }
-
 ?>
