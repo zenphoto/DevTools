@@ -9,7 +9,7 @@
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('Generates the <em>zenphoto.package</em> file.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.5';
+$plugin_version = '1.5.8';
 $option_interface = 'zenphoto_package';
 
 zp_register_filter('admin_utilities_buttons', 'zenphoto_package_button');

@@ -11,7 +11,7 @@
 define("OFFSET_PATH", 3);
 require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))) . "/zp-core/admin-functions.php");
 
-$stdExclude = Array('.', '..', '.DS_Store', '.cache', 'Thumbs.db', '.htaccess', '.svn', 'debug.html', '.buildpath', '.project', '.settings');
+$stdExclude = array('.', '..', '.DS_Store', '.cache', 'Thumbs.db', '.htaccess', '.svn', 'debug.html', '.buildpath', '.project', '.settings', '.tmp');
 $_zp_resident_files[] = 'index.php';
 
 $_zp_resident_files[] = THEMEFOLDER;
@@ -21,11 +21,6 @@ $_zp_resident_files = array_merge($_zp_resident_files, getResidentFiles(SERVERPA
 
 $_zp_resident_files[] = THEMEFOLDER . '/garland';
 $_zp_resident_files = array_merge($_zp_resident_files, getResidentFiles(SERVERPATH . '/' . THEMEFOLDER . '/garland', $stdExclude));
-
-if (file_exists(SERVERPATH . '/' . THEMEFOLDER . '/stopdesign')) {
-	$_zp_resident_files[] = THEMEFOLDER . '/stopdesign';
-	$_zp_resident_files = array_merge($_zp_resident_files, getResidentFiles(SERVERPATH . '/' . THEMEFOLDER . '/stopdesign', $stdExclude));
-}
 
 $_zp_resident_files[] = THEMEFOLDER . '/zenpage';
 $_zp_resident_files = array_merge($_zp_resident_files, getResidentFiles(SERVERPATH . '/' . THEMEFOLDER . '/zenpage', $stdExclude));
@@ -40,7 +35,7 @@ $_special_files[] = ZENFOLDER . '/version.php';
 $_special_files[] = ZENFOLDER . '/setup';
 $_special_files = array_merge($_special_files, getResidentFiles(SERVERPATH . '/' . ZENFOLDER . '/setup', $stdExclude));
 
-natsort($_zp_resident_files);
+sortArray($_zp_resident_files, false, true, true);
 $filepath = SERVERPATH . '/' . getOption('zenphoto_package_path') . '/Zenphoto.package';
 @chmod($filepath, 0666);
 $fp = fopen($filepath, 'w');
@@ -54,8 +49,7 @@ foreach ($_special_files as $component) {
 fwrite($fp, count($_zp_resident_files) + count($_special_files));
 fclose($fp);
 clearstatcache();
-header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg=Zenphoto package created and stored in the ' . getOption('zenphoto_package_path') . ' folder.');
-exitZP();
+redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg=Zenphoto package created and stored in the ' . getOption('zenphoto_package_path') . ' folder.');
 
 /**
  *
