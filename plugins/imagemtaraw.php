@@ -13,16 +13,16 @@ $plugin_is_filter = 9 | THEME_PLUGIN;
 $plugin_description = gettext('A plugin to print raw image EXIF and IPTC meta data debug info on a theme image.php as PHP nativeely parses it before our formatting is applied. Attaches to the theme_body_close filter.');
 $plugin_author = 'Malte Müller (acrylian)';
 $plugin_category = gettext('Development');
-$plugin_version = '1.0b';
+$plugin_version = '1.0.1b';
 
 zp_register_filter('theme_body_close', 'imageMetadataRaw::printMetadataRaw');
 
 class imageMetadataRaw {
 
 	static function printMetadataRaw() {
-		global $_zp_current_image, $_zp_graphics;
+		global $_zp_current_image, $_zp_graphics, $_zp_gallery_page;
 
-		if (zp_loggedin(ADMIN_RIGHTS)) {
+		if (zp_loggedin(ADMIN_RIGHTS) && $_zp_gallery_page == 'image.php') {
 			echo '<div style="background: white; color: black; font-size: 16px;">';
 			$exifraw = read_exif_data_protected($_zp_current_image->localpath);
 			if ($exifraw) {
