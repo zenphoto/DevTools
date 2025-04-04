@@ -26,7 +26,14 @@ function pseudo_sendmail($msg, $email_list, $subject, $message, $from_mail, $fro
 	foreach ($email_list as $to) {
 		$tolist .= ',' . $to;
 	}
+	
 	$content = sprintf(gettext('To: %s'), substr($tolist, 1)) . "\n";
+	if (empty($from_name)) {
+		$from_name = getGalleryTitle();
+	}
+	if (empty($from_mail)) {
+		$from_mail = getOption('site_email');
+	}
 	$content .= sprintf('From: %1$s <%2$s>', $from_name, $from_mail) . "\n";
 	if ($replyTo) {
 		$names = array_keys($replyTo);
