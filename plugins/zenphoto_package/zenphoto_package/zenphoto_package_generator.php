@@ -25,9 +25,6 @@ $_zp_resident_files = array_merge($_zp_resident_files, getResidentFiles(SERVERPA
 $_zp_resident_files[] = THEMEFOLDER . '/zenpage';
 $_zp_resident_files = array_merge($_zp_resident_files, getResidentFiles(SERVERPATH . '/' . THEMEFOLDER . '/zenpage', $stdExclude));
 
-$_zp_resident_files[] = THEMEFOLDER . '/zpmobile';
-$_zp_resident_files = array_merge($_zp_resident_files, getResidentFiles(SERVERPATH . '/' . THEMEFOLDER . '/zpmobile', $stdExclude));
-
 $_zp_resident_files[] = ZENFOLDER;
 $_zp_resident_files = array_merge($_zp_resident_files, getResidentFiles(SERVERPATH . '/' . ZENFOLDER, array_merge($stdExclude, array('setup', 'version.php'))));
 
