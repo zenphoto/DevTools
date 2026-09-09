@@ -13,12 +13,12 @@ $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Pseudo mailing handler for localhost testing.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.3';
-$plugin_disable = (zp_has_filter('sendmail') && !extensionEnabled('pseudomail')) ? sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('sendmail'))) : '';
+$plugin_disable = (filter::hasFilter('sendmail') && !extensionEnabled('pseudomail')) ? sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('sendmail'))) : '';
 
 if ($plugin_disable) {
 	enableExtension('pseudomail', 0);
 } else {
-	zp_register_filter('sendmail', 'pseudo_sendmail');
+	filter::registerFilter('sendmail', 'pseudo_sendmail');
 }
 
 function pseudo_sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
